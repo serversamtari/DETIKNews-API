@@ -1,7 +1,6 @@
 import httpx
 import asyncio
 import uvicorn
-import json
 from fastapi import FastAPI
 
 from selectolax.parser import HTMLParser
@@ -79,7 +78,7 @@ async def scrape_data(keyword: str, pages: int):
     # Flatten the nested list of items
     items = [item for page_items in items for item in page_items]
 
-    return json.dumps(items)
+    return items
 
 
 if __name__ == '__main__':
