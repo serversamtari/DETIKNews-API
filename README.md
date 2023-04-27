@@ -18,6 +18,9 @@ uvicorn app:app --reload
 ```
 
 ## Test
-[http://127.0.0.1:8000/scrape/?keyword=teknologi&pages=10](http://127.0.0.1:8000/scrape/?keyword=teknologi&pages=10)
+[http://localhost:8000/scrape/?keyword=teknologi&pages=10](http://127.0.0.1:8000/scrape/?keyword=teknologi&pages=10)
+```bash
+curl -X GET "http://localhost:8000/scrape/?keyword=teknologi&pages=10"
+```
 
 [EDIT the **keyword** and **pages** value]
