@@ -1,8 +1,7 @@
 import httpx
 import asyncio
-import datetime
-import pandas as pd
 import uvicorn
+import json
 from fastapi import FastAPI
 
 from selectolax.parser import HTMLParser
@@ -65,10 +64,6 @@ async def read_root():
 async def scrape_data(keyword: str, pages: int):
     url = "https://www.detik.com/search/searchall?"
 
-    now = datetime.datetime.now()
-    # Format the current date and time as a string
-    formatted_date_time = now.strftime("%Y%m%d_%H%M%S")
-
     params = {
         "query": keyword,
         "page": pages,
@@ -84,10 +79,7 @@ async def scrape_data(keyword: str, pages: int):
     # Flatten the nested list of items
     items = [item for page_items in items for item in page_items]
 
-    data = pd.DataFrame(items)
-    data.index += 1
-
-    return data.to_dict(orient="records")
+    return json.dumps(items)
 
 
 if __name__ == '__main__':
